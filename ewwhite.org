@@ -1,0 +1,35 @@
+* Default Key Bindings
+#+name: ewwhite-default-bindings
+#+begin_src emacs-lisp 
+  (global-set-key [(control ?c)(?r)] 'revert-buffer)
+  (global-set-key [(control ?c)(control ?r)] 'rename-buffer)
+  (global-set-key (kbd "C-;") 'other-window)
+  (global-set-key (kbd "C-'") 'switch-to-other-buffer)
+  (global-set-key [(meta ?g)] 'goto-line)
+  (global-set-key [(meta ?s)(meta ?s)] 'shell)
+  (global-set-key [(meta mouse-2)] 'ffap-at-mouse)
+  (global-set-key (kbd "C-c m") 'magit-status)
+#+end_src
+* Misc Settings
+#+name: ewwhite-misc-settings
+#+begin_src emacs-lisp 
+;; By default truncate lines for buffers
+(set-default 'truncate-lines t)
+(setq truncate-partial-width-windows nil)
+
+;use smooth scrolling
+(setq scroll-conservatively 1)
+
+; Disable Toolbar
+(tool-bar-mode -1)
+
+; ido overrides
+(setq ido-use-filename-at-point 'guess)
+
+#+end_src
+* Load Packages
+#+name: ewwhite-misc-settings
+#+begin_src emacs-lisp 
+;(starter-kit-load "starter-kit-magit.org")
+
+#+end_src
