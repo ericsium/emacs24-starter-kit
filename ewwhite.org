@@ -26,6 +26,22 @@
 ; ido overrides
 (setq ido-use-filename-at-point 'guess)
 
+; Add lgrep to isearch mode
+(define-key isearch-mode-map [(control shift o)]
+      (lambda () (interactive)
+        (let ((shk-search-string isearch-string))
+          (grep-compute-defaults)
+          (lgrep (if isearch-regexp shk-search-string (regexp-quote shk-search-string))
+                 (format "*.%s" (file-name-extension (buffer-file-name)))
+                 default-directory)
+          (isearch-abort))))
+
+(setq column-number-mode t)
+(setq line-number-mode t)
+
+; Try to speed up magit
+; https://magit.vc/manual/magit/Performance.html#Performance
+(setq vc-handled-backends nil)
 #+end_src
 * Look and feel
 
@@ -77,5 +93,9 @@ Now, lets make sure we are not `ding`-ed all the time.
 * Load Packages
 #+name: ewwhite-misc-settings
 #+begin_src emacs-lisp 
+
+  (use-package ahk-mode
+    :ensure t)
+
 #+end_src
 
