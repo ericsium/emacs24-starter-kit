@@ -47,10 +47,17 @@
 
 #+name: credmp-package-installer
 #+begin_src emacs-lisp
-  (use-package arjen-grey-theme
-    :ensure t
-    :config
-    (load-theme 'arjen-grey t))
+;  (use-package arjen-grey-theme
+;    :ensure t
+;    :config
+;    (load-theme 'arjen-grey t))
+
+;  (use-package solarized-theme
+;    :ensure t
+;    :config
+;    (load-theme 'solarized-dark t))
+
+    (load-theme 'wombat t)
 
 ;  (if (eq system-type 'darwin)
 ;      (set-face-attribute 'default nil :font "Hack-14")
