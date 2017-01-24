@@ -13,55 +13,40 @@
 * Misc Settings
 #+name: ewwhite-misc-settings
 #+begin_src emacs-lisp 
-;; By default truncate lines for buffers
-(set-default 'truncate-lines t)
-(setq truncate-partial-width-windows nil)
+  ;; By default truncate lines for buffers
+  (set-default 'truncate-lines t)
+  (setq truncate-partial-width-windows nil)
 
-;use smooth scrolling
-(setq scroll-conservatively 1)
+  ;use smooth scrolling
+  (setq scroll-conservatively 1)
 
-; Disable Toolbar
-(tool-bar-mode -1)
+  ; Disable Toolbar
+  (tool-bar-mode -1)
 
-; ido overrides
-(setq ido-use-filename-at-point 'guess)
+  ; ido overrides
+  (setq ido-use-filename-at-point 'guess)
 
-; Add lgrep to isearch mode
-(define-key isearch-mode-map [(control shift o)]
-      (lambda () (interactive)
-        (let ((shk-search-string isearch-string))
-          (grep-compute-defaults)
-          (lgrep (if isearch-regexp shk-search-string (regexp-quote shk-search-string))
-                 (format "*.%s" (file-name-extension (buffer-file-name)))
-                 default-directory)
-          (isearch-abort))))
+  ; Add lgrep to isearch mode
+  (define-key isearch-mode-map [(control shift o)]
+        (lambda () (interactive)
+          (let ((shk-search-string isearch-string))
+            (grep-compute-defaults)
+            (lgrep (if isearch-regexp shk-search-string (regexp-quote shk-search-string))
+                   (format "*.%s" (file-name-extension (buffer-file-name)))
+                   default-directory)
+            (isearch-abort))))
 
-(setq column-number-mode t)
-(setq line-number-mode t)
+  (setq column-number-mode t)
+  (setq line-number-mode t)
 
-; Try to speed up magit
-; https://magit.vc/manual/magit/Performance.html#Performance
-(setq vc-handled-backends nil)
+  ; Try to speed up magit
+  ; https://magit.vc/manual/magit/Performance.html#Performance
+  (setq vc-handled-backends nil)
 #+end_src
 * Look and feel
-
 #+name: credmp-package-installer
 #+begin_src emacs-lisp
-;  (use-package arjen-grey-theme
-;    :ensure t
-;    :config
-;    (load-theme 'arjen-grey t))
-
-;  (use-package solarized-theme
-;    :ensure t
-;    :config
-;    (load-theme 'solarized-dark t))
-
-    (load-theme 'wombat t)
-
-;  (if (eq system-type 'darwin)
-;      (set-face-attribute 'default nil :font "Hack-14")
-;    (set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 110))
+  (load-theme 'wombat t)
 #+end_src
 
 #+BEGIN_SRC emacs-lisp
@@ -75,24 +60,17 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-   (eval-after-load "org-indent" '(diminish 'org-indent-mode))
+  (eval-after-load "org-indent" '(diminish 'org-indent-mode))
+  (setq org-src-fontify-natively t)  ;; you want this to activate coloring in blocks
+  (setq org-src-tab-acts-natively t) ;; you want this to have completion in blocks
 #+END_SRC
-
-Have the ability to use some amazing font icons
-
-#+BEGIN_SRC emacs-lisp
-;;   (use-package all-the-icons
-;;     :ensure t)
-#+END_SRC
-
-Be sure to install the fonts from [[https://github.com/domtronn/all-the-icons.el/tree/master/fonts][the github repo]].
 
 Now, lets make sure we are not `ding`-ed all the time.
 
 #+BEGIN_SRC emacs-lisp
   ;; http://stackoverflow.com/questions/11679700/emacs-disable-beep-when-trying-to-move-beyond-the-end-of-the-document
   (defun my-bell-function ())
-
+ 
   (setq ring-bell-function 'my-bell-function)
   (setq visible-bell nil)
 #+END_SRC
